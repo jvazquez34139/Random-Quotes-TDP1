@@ -14,28 +14,21 @@ const randomHexColor = () => {
 }
 
 // Create the printQuote funtion and name it printQuote
-function printQuote(){
+const printQuote = () => {
   const quote = getRandomQuote(quotes);
-  let html = "";
-  quote.index = quotes.indexOf(quote);
   document.getElementById("quote").innerHTML = quote.quote;
-
+  let source = document.getElementById("source");
+  source.innerHTML = quote.source;
   //check for citation
-  if(quote.index === 3 || quote.index === 2){
-    html = quote.source + "<span class=\"citation\">" + quote.citation + "</span>"
-
-    //checks for year
-    if(quote.index === 2){
-      html += "<span class=\"year\">" + quote.year + "</span>"
-    }
-    document.getElementById("source").innerHTML = html;
-  }else{
-    document.getElementById("source").innerHTML = quote.source;
+  if(quote.citation){
+    source.innerHTML += "<span class=\"citation\">" + quote.citation + "</span>";
   }
-
+  //checks for year
+  if(quote.year){
+    source.innerHTML += "<span class=\"year\">" + quote.year + "</span>";
+  }
   //changes the color of the page's body
   document.body.style.backgroundColor = "#" + randomHexColor();
-
   //sets the timers ticks back to 0
   //so it only reprints automatically 20 secs after not clicking
   //instead of every 20 seconds exact regardless of the button clicked
@@ -46,7 +39,7 @@ function printQuote(){
 //prints quote 20 secs of not clicking the button
 function timer(){
   timerTicker++;
-  if(timerTicker === 200){
+  if(timerTicker === 30){
     printQuote();
   }
 }
@@ -55,4 +48,4 @@ function timer(){
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-var newQuoteTimer = setInterval(timer,100);
+setInterval(timer,100);
