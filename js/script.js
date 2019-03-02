@@ -1,49 +1,22 @@
-// FSJS - Random Quote Generator
-
 // Create the array of quote objects and name it quotes
 var timerTicker = 0;
-var quotes = [
-  {
-    quote:"You must be the change you wish to see in the world.",
-    source:"Gandhi"
-  },
-  {
-    quote:"You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
-    source:"Dr. Seuss"
-  },
-  {
-    quote:"Love all, trust a few, do wrong to none.",
-    source:"William Shakespeare",
-    citation: "All's Well That Ends Well",
-    year: 1605
-  },
-  {
-    quote:"Success always demands a greater effort.",
-    source:"Winston Churchill",
-    citation:"Their Finest Hour",
-  },
-  {
-    quote:"Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
-    source:"Lao Tzu"
-  }
-];
 
 // Create the getRandomQuote function and name it getRandomQuote
-function getRandomQuote(quoteArray){
-  var randomIndex = Math.floor(Math.random() * quoteArray.length);
+const getRandomQuote = quoteArray => {
+  const randomIndex = Math.floor(Math.random() * quoteArray.length);
   return quoteArray[randomIndex];
 }
 
 //makes a random hexadecimal color;
-function randomHexColor(){
-  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+const randomHexColor = () => {
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
   return randomColor;
 }
 
 // Create the printQuote funtion and name it printQuote
 function printQuote(){
-  var quote = getRandomQuote(quotes);
-  var html = "";
+  const quote = getRandomQuote(quotes);
+  let html = "";
   quote.index = quotes.indexOf(quote);
   document.getElementById("quote").innerHTML = quote.quote;
 
